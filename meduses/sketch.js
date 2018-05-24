@@ -1,21 +1,22 @@
-let width = window.innerWidth;
-let height = window.innerHeight;
+let width = window.innerWidth - 20;
+let height = window.innerHeight - 20;
 
 var creatures = [];
 
 function setup() {
     createCanvas(width, height);
+    [1,2,3,4,5,6].forEach(() => creatures.push(new Creature(createVector(width/2, height/2), 12, 12, 10, 50, 10, 3)))
 };
 
 function draw() {
-    background(255);
+    background(39,39,39);
     for (var a = 0; a < creatures.length; a++) {
         creatures[a].update()
     }
 };
 
 function mousePressed() {
-    creatures.push(new Creature(createVector(mouseX, mouseY), 12, 12, 10, 50, 10, 3))
+    creatures.pop()
 }
 
 class Tentacle {
@@ -108,7 +109,7 @@ class Creature {
             .position
             .copy();
         this.moveDuration = random(100, 150);
-        this.moveDistance = random(50, 150);
+        this.moveDistance = random(200, 400);
         this.reachedDest = false;
         this.moveTime = 0;
 
