@@ -40,8 +40,7 @@ var s = function sketch(p) {
     }
   };
 
-  p.mousePressed = (target) => {
-    console.log(target)
+  p.mousePressed = () => {
     if(document.getElementById('defaultCanvas1'))
     creatures.push(new Creature(p.createVector(p.mouseX, p.mouseY), 12, 12, 10, 50, 10, 3))
   }
