@@ -5,18 +5,18 @@ var creatures = [];
 
 function setup() {
     createCanvas(width, height);
-    // [1,2,3].forEach(() => creatures.push(new Creature(createVector(width/2, height/2), 12, 12, 10, 50, 10, 3))
+    [1, 2, 3].forEach(() => creatures.push(new Creature(createVector(width / 2, height / 2), 12, 12, 10, 50, 10, 3)))
 };
 
 function draw() {
-    background(39,39,39);
+    background(39, 39, 39);
     for (var a = 0; a < creatures.length; a++) {
         creatures[a].update()
     }
 };
 
 function mousePressed() {
-    creatures.push(new Creature(createVector(width/2, height/2), 12, 12, 10, 50, 10, 3))
+    creatures.push(new Creature(createVector(mouseX, mouseY), 12, 12, 10, 50, 10, 3))
 }
 
 class Tentacle {
@@ -149,13 +149,13 @@ class Creature {
             var nextPos = p5
                 .Vector
                 .add(this.position, this.dest);
-            if (nextPos.x > width) 
+            if (nextPos.x > width)
                 this.dest.x = -abs(this.dest.x);
-            else if (nextPos.x < 0) 
+            else if (nextPos.x < 0)
                 this.dest.x = abs(this.dest.x);
-            if (nextPos.y > height) 
+            if (nextPos.y > height)
                 this.dest.y = -abs(this.dest.y);
-            else if (nextPos.y < 0) 
+            else if (nextPos.y < 0)
                 this.dest.y = abs(this.dest.y);
             this.reachedDest = false;
             this.moveTime = 0;
@@ -163,24 +163,24 @@ class Creature {
             this.position.x = Penner.easeInOutExpo(this.moveTime, this.lastPos.x, this.dest.x, this.moveDuration);
             this.position.y = Penner.easeInOutExpo(this.moveTime, this.lastPos.y, this.dest.y, this.moveDuration);
             this.moveTime++;
-            if (this.moveTime >= this.moveDuration) 
+            if (this.moveTime >= this.moveDuration)
                 this.reachedDest = true;
-            }
+        }
         this.orientation += random(-3, 3) * radians(.5);
 
-        fill(0/*headClr*/);
-        for (var j = 0; j < this.nbTentacles; j++) 
+        fill(0 /*headClr*/ );
+        for (var j = 0; j < this.nbTentacles; j++)
             this.tentacles[j].draw();
-        }
     }
+}
 
 class Penner {
     static easeInOutExpo(t, b, c, d) {
-        if (t == 0) 
+        if (t == 0)
             return b;
-        if (t == d) 
+        if (t == d)
             return b + c;
-        if ((t /= d / 2) < 1) 
+        if ((t /= d / 2) < 1)
             return c / 2 * pow(2, 10 * (t - 1)) + b;
         return c / 2 * (-pow(2, -10 * --t) + 2) + b;
     }
