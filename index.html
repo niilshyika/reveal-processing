@@ -15,7 +15,7 @@
 	<div class="reveal">
 		<div class="slides">
 			<section data-background-iframe="./poisson-disc/index.html" data-background-position="center">
-			<!-- <section> -->
+				<!-- <section> -->
 				<h2>Processing</h2>
 				<h6>"ALGORITHMIC DESIGN"</h6>
 			</section>
@@ -27,6 +27,13 @@
 				<img width="400" src="gifs/order_3.gif" style="margin: 0; border:none; box-shadow: none;">
 				<br>
 				<a href="https://vimeo.com/196269431">Max Cooper - Order from Chaos</a>
+			</section>
+
+			<section>
+				<img height="400" src="gifs/g-1.jpg" style=" grid-column: 1; margin: 0; border:none; box-shadow: none;">
+				<img width="400" src="gifs/g-3.jpg" style="margin: 0; border:none; box-shadow: none;">
+				<img width="500" src="gifs/g-4.jpg" style="margin: 0; border:none; box-shadow: none;">
+				<img width="400" src="gifs/g-6.jpg" style="margin: 0; border:none; box-shadow: none;">
 			</section>
 
 			<section>
@@ -63,7 +70,7 @@
 				<img width="400" src="gifs/voronoi-2.png" style="border:none; box-shadow: none;">
 			</section>
 
-			
+
 			<section>
 				<img width="700" src="gifs/reaction-diffusion.gif" style="border:none; box-shadow: none;">
 			</section>
@@ -96,42 +103,42 @@
 			backgroundTransition: 'none',
 
 			dependencies: [{
-					src: 'lib/js/classList.js',
-					condition: function () {
-						return !document.body.classList;
-					}
-				},
-				{
-					src: 'plugin/markdown/marked.js',
-					condition: function () {
-						return !!document.querySelector('[data-markdown]');
-					}
-				},
-				{
-					src: 'plugin/markdown/markdown.js',
-					condition: function () {
-						return !!document.querySelector('[data-markdown]');
-					}
-				},
-				{
-					src: 'plugin/highlight/highlight.js',
-					async: true,
-					callback: function () {
-						hljs.initHighlightingOnLoad();
-					}
-				},
-				{
-					src: 'plugin/search/search.js',
-					async: true
-				},
-				{
-					src: 'plugin/zoom-js/zoom.js',
-					async: true
-				},
-				{
-					src: 'plugin/notes/notes.js',
-					async: true
+				src: 'lib/js/classList.js',
+				condition: function () {
+					return !document.body.classList;
 				}
+			},
+			{
+				src: 'plugin/markdown/marked.js',
+				condition: function () {
+					return !!document.querySelector('[data-markdown]');
+				}
+			},
+			{
+				src: 'plugin/markdown/markdown.js',
+				condition: function () {
+					return !!document.querySelector('[data-markdown]');
+				}
+			},
+			{
+				src: 'plugin/highlight/highlight.js',
+				async: true,
+				callback: function () {
+					hljs.initHighlightingOnLoad();
+				}
+			},
+			{
+				src: 'plugin/search/search.js',
+				async: true
+			},
+			{
+				src: 'plugin/zoom-js/zoom.js',
+				async: true
+			},
+			{
+				src: 'plugin/notes/notes.js',
+				async: true
+			}
 			]
 		});
 	</script>

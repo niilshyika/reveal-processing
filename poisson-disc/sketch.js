@@ -9,7 +9,7 @@ var active = [];
 var cols,
   rows;
 var ordered = [];
-var maxCount = 7000;
+var maxCount = 2000;
 
 function setup() {
   createCanvas(windowWidth-20, windowHeight-20);
@@ -92,7 +92,7 @@ function draw() {
   for (var i = 0; i < ordered.length; i++) {
     if (ordered[i]) {
       stroke(236,39,93);
-      strokeWeight(r * 0.5);
+      strokeWeight(r * .9);
       point(ordered[i].x, ordered[i].y);
     }
   }
