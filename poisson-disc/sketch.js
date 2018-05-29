@@ -1,99 +1,87 @@
-// Daniel Shiffman http://codingtra.in http://patreon.com/codingtrain Code for
-// this video: https://youtu.be/flQgnCUxHlw
+var mass = [];
+var positionX = [];
+var positionY = [];
+var velocityX = [];
+var velocityY = [];
 
-var r = 4;
-var k = 30;
-var grid = [];
-var w = r / Math.sqrt(2);
-var active = [];
-var cols,
-  rows;
-var ordered = [];
-var maxCount = 2000;
+var maxParticles = 150;
+
+var height;
+var width;
+var count = 0;
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function setup() {
-  createCanvas(windowWidth-20, windowHeight-20);
-  background(39,39,39);
-  strokeWeight(20);
-
-  // STEP 0
-  cols = floor(width / w);
-  rows = floor(height / w);
-  for (var i = 0; i < cols * rows; i++) {
-    grid[i] = undefined;
-  }
-
-  // STEP 1
-  var x = width / 2;
-  var y = height / 2;
-  var i = floor(x / w);
-  var j = floor(y / w);
-  var pos = createVector(x, y);
-  grid[i + j * cols] = pos;
-  active.push(pos);
-  //frameRate(1);
+  width = windowWidth - 20;
+  height = windowHeight - 20;
+  createCanvas(width, height);
+  noStroke();
+  fill(236, 39, 93, 192);
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
-  background(39,39,39);
-  //noLoop();
+  background(39);
 
-  for (var total = 0; total < 25; total++) {
-    if (active.length > 0) {
-      var randIndex = floor(random(active.length));
-      var pos = active[randIndex];
-      var found = false;
-      for (var n = 0; n < k; n++) {
-        var sample = p5
-          .Vector
-          .random2D();
-        var m = random(r, 2 * r);
-        sample.setMag(m);
-        sample.add(pos);
+  for (var particleA = 0; particleA < mass.length; particleA++) {
+    var accelerationX = 0, accelerationY = 0;
 
-        var col = floor(sample.x / w);
-        var row = floor(sample.y / w);
+    for (var particleB = 0; particleB < mass.length; particleB++) {
+      if (particleA != particleB) {
+        var distanceX = positionX[particleB] - positionX[particleA];
+        var distanceY = positionY[particleB] - positionY[particleA];
 
-        if (col > -1 && row > -1 && col < cols && row < rows && !grid[col + row * cols]) {
-          var ok = true;
-          for (var i = -1; i <= 1; i++) {
-            for (var j = -1; j <= 1; j++) {
-              var index = (col + i) + (row + j) * cols;
-              var neighbor = grid[index];
-              if (neighbor) {
-                var d = p5
-                  .Vector
-                  .dist(sample, neighbor);
-                if (d < r) {
-                  ok = false;
-                }
-              }
-            }
-          }
-          if (ok) {
-            found = true;
-            grid[col + row * cols] = sample;
-            active.push(sample);
-            ordered.push(sample);
-            // Should we break?
-            break;
-          }
-        }
+        var distance = sqrt(distanceX * distanceX + distanceY * distanceY);
+        if (distance < 1) distance = 1;
+
+        var force = (distance - 320) * mass[particleB] / distance;
+        accelerationX += force * distanceX;
+        accelerationY += force * distanceY;
       }
-
-      if (!found) {
-        active.splice(randIndex, 1);
-      }
-
     }
+
+    velocityX[particleA] = velocityX[particleA] * 0.99 + accelerationX * mass[particleA];
+    velocityY[particleA] = velocityY[particleA] * 0.99 + accelerationY * mass[particleA];
   }
-  if (ordered.length > maxCount) noLoop();
 
-  for (var i = 0; i < ordered.length; i++) {
-    if (ordered[i]) {
-      stroke(236,39,93);
-      strokeWeight(r * .9);
-      point(ordered[i].x, ordered[i].y);
-    }
+  for (var particle = 0; particle < mass.length; particle++) {
+    positionX[particle] += velocityX[particle];
+    positionY[particle] += velocityY[particle];
+
+    ellipse(positionX[particle], positionY[particle], mass[particle] * 1000, mass[particle] * 1000);
   }
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function addNewParticle() {
+  count++
+  mass.push(random(0.003, 0.03));
+  count == 1 ? positionX.push(width / 2) : positionX.push(width / 2 + random(-400, 400));
+  count == 1 ? positionY.push(height / 2) : positionY.push(height / 2 + random(-400, 400));
+  velocityX.push(0);
+  velocityY.push(0);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// setInterval(() =>
+//   count < maxParticles && addNewParticle()
+//   , .5)
+
+// function mouseClicked() {
+  
+// }
+let keyPressedCount = 0;
+function keyPressed() {
+  keyPressedCount++
+  keyPressedCount == 1? setInterval(() =>
+  count < maxParticles && addNewParticle()
+  , .5) : document.getElementsByClassName('controls-arrow')[1].click()
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// function mouseDragged() {
+//   addNewParticle();
+// }
