@@ -146,7 +146,12 @@
 				async: true
 			}
 			]
-		});
+		});	
+
+		Reveal.addEventListener( 'slidechanged', function( event ) {
+			console.log(event)
+	// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+} );
 	</script>
 
 </body>

@@ -9,6 +9,8 @@ var maxParticles = 150;
 var height;
 var width;
 var count = 0;
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function setup() {
@@ -25,7 +27,8 @@ function draw() {
   background(39);
 
   for (var particleA = 0; particleA < mass.length; particleA++) {
-    var accelerationX = 0, accelerationY = 0;
+    var accelerationX = 0,
+      accelerationY = 0;
 
     for (var particleB = 0; particleB < mass.length; particleB++) {
       if (particleA != particleB) {
@@ -70,14 +73,21 @@ function addNewParticle() {
 //   , .5)
 
 // function mouseClicked() {
-  
+
 // }
-let keyPressedCount = 0;
-function keyPressed() {
-  keyPressedCount++
-  keyPressedCount == 1? setInterval(() =>
-  count < maxParticles && addNewParticle()
-  , .5) : document.getElementsByClassName('controls-arrow')[1].click()
+let interval;
+
+function mousePressed() {
+  interval = setInterval(() =>
+    count < maxParticles && addNewParticle(), .5)
+
+  setTimeout(() => {
+    clearInterval(interval)
+    noLoop()
+    // nextArrow.focus()
+    Reveal.next()
+
+  }, 10000)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
