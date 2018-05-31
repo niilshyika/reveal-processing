@@ -5,7 +5,7 @@ var creatures = [];
 
 function setup() {
     createCanvas(width, height);
-    // [1, 2, 3].forEach(() => creatures.push(new Creature(createVector(width / 2, height / 2), 12, 12, 10, 50, 10, 3)))
+    [1, 2].forEach(() => creatures.push(new Creature(createVector(width / 2, height / 2), 12, 12, 10, 50, 10, 3)))
 };
 
 function draw() {

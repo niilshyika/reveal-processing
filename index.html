@@ -54,7 +54,7 @@
 			<section>
 				<img width="800" src="gifs/rank-2.png" style="border:none; box-shadow: none;">
 			</section>
-			
+
 			<section data-background-iframe="./meduses/index.html" data-background-interactive>
 				<img width="200" src="gifs/p5-logo.png" style="border:none; box-shadow: none;">
 			</section>
@@ -84,12 +84,26 @@
 				<h1 style="color: black;">Perlin Noise</h1>
 			</section>
 
+			<section>
+				<img width="600" src="gifs/perlin-noise.jpg" style="border:none; box-shadow: none;">
+				<img width="300" src="gifs/perlin-noise2.png" style="border:none; box-shadow: none;">
+			</section>
+
 			<section data-background-video="gifs/react-diffusion.mp4" data-background-video-loop data-background-video-muted>
 				<h1 style="color: black;">Reaction Diffusion</h1>
 			</section>
 
+			<section>
+				<img width="600" src="gifs/reaction.gif" style="border:none; box-shadow: none;">
+			</section>
+
 			<section data-background-video="gifs/voronoi.mp4" data-background-video-loop data-background-video-muted>
 				<h1>Voronoi diagram</h1>
+			</section>
+
+			<section>
+				<img width="450" src="gifs/voronoi1.jpg" style="border:none; box-shadow: none;">
+				<img width="450" src="gifs/voronoi2.jpg" style="border:none; box-shadow: none;">
 			</section>
 
 			<section>
@@ -125,8 +139,8 @@
 				</ul>
 			</section>
 
-			<section style="text-align: left;">
-				<h1>THE END</h1>
+			<section>
+				<img width="600" src="gifs/shaila.jpg" style="border:none; box-shadow: none;">
 			</section>
 
 		</div>
@@ -152,42 +166,42 @@
 			backgroundTransition: 'none',
 
 			dependencies: [{
-				src: 'lib/js/classList.js',
-				condition: function () {
-					return !document.body.classList;
+					src: 'lib/js/classList.js',
+					condition: function () {
+						return !document.body.classList;
+					}
+				},
+				{
+					src: 'plugin/markdown/marked.js',
+					condition: function () {
+						return !!document.querySelector('[data-markdown]');
+					}
+				},
+				{
+					src: 'plugin/markdown/markdown.js',
+					condition: function () {
+						return !!document.querySelector('[data-markdown]');
+					}
+				},
+				{
+					src: 'plugin/highlight/highlight.js',
+					async: true,
+					callback: function () {
+						hljs.initHighlightingOnLoad();
+					}
+				},
+				{
+					src: 'plugin/search/search.js',
+					async: true
+				},
+				{
+					src: 'plugin/zoom-js/zoom.js',
+					async: true
+				},
+				{
+					src: 'plugin/notes/notes.js',
+					async: true
 				}
-			},
-			{
-				src: 'plugin/markdown/marked.js',
-				condition: function () {
-					return !!document.querySelector('[data-markdown]');
-				}
-			},
-			{
-				src: 'plugin/markdown/markdown.js',
-				condition: function () {
-					return !!document.querySelector('[data-markdown]');
-				}
-			},
-			{
-				src: 'plugin/highlight/highlight.js',
-				async: true,
-				callback: function () {
-					hljs.initHighlightingOnLoad();
-				}
-			},
-			{
-				src: 'plugin/search/search.js',
-				async: true
-			},
-			{
-				src: 'plugin/zoom-js/zoom.js',
-				async: true
-			},
-			{
-				src: 'plugin/notes/notes.js',
-				async: true
-			}
 			]
 		});
 
