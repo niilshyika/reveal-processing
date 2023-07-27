@@ -24,7 +24,7 @@ function setup() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
-  background(39);
+  background(41, 49, 69);
 
   for (var particleA = 0; particleA < mass.length; particleA++) {
     var accelerationX = 0,
@@ -81,17 +81,17 @@ function mousePressed() {
   interval = setInterval(() =>
     count < maxParticles && addNewParticle(), .5)
 
-  setTimeout(() => {
-    clearInterval(interval)
-    noLoop()
-    // nextArrow.focus()
-    Reveal.next()
-
-  }, 10000)
+  // setTimeout(() => {
+  //   clearInterval(interval)
+  //   noLoop()
+  //   // nextArrow.focus()
+  //   Reveal.next()
+  //
+  // }, 15000)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// function mouseDragged() {
-//   addNewParticle();
-// }
+function mouseDragged() {
+  addNewParticle();
+}

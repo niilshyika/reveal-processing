@@ -5,18 +5,17 @@ var creatures = [];
 
 function setup() {
     createCanvas(width, height);
-    [1, 2].forEach(() => creatures.push(new Creature(createVector(width / 2, height / 2), 12, 12, 10, 50, 10, 3)))
 };
 
 function draw() {
-    background(39, 39, 39);
+    background(41, 49, 69);
     for (var a = 0; a < creatures.length; a++) {
         creatures[a].update()
     }
 };
 
 function mousePressed() {
-    creatures.push(new Creature(createVector(width / 2, height / 2), 12, 12, 10, 50, 10, 3))
+    creatures.push(new Creature(createVector(mouseX, mouseY), 12, 12, 10, 50, 10, 3))
 }
 
 class Tentacle {
@@ -166,9 +165,9 @@ class Creature {
             if (this.moveTime >= this.moveDuration)
                 this.reachedDest = true;
         }
-        this.orientation += random(-3, 3) * radians(.5);
+        this.orientation += random(-3, 3) * radians(.7);
 
-        fill(0 /*headClr*/ );
+        // fill(0 /*headClr*/ );
         for (var j = 0; j < this.nbTentacles; j++)
             this.tentacles[j].draw();
     }
